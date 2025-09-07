@@ -1,0 +1,70 @@
+# ChemPatent Pro Dependencies
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+jinja2==3.1.2
+aiofiles==23.2.1
+
+# PDF處理和OCR
+PyPDF2==3.0.1
+pdfplumber==0.10.3
+pymupdf==1.23.14
+pytesseract==0.3.10
+pdf2image==1.16.3
+pillow==10.1.0
+
+# 化學和分子處理
+rdkit-pypi==2022.9.5
+opencv-python==4.8.1.78
+numpy==1.24.3
+scipy==1.11.4
+matplotlib==3.7.2
+seaborn==0.12.2
+plotly==5.17.0
+
+# 機器學習和NLP
+scikit-learn==1.3.2
+transformers==4.35.2
+torch==2.1.1
+sentence-transformers==2.2.2
+spacy==3.7.2
+
+# 數據處理
+pandas==2.1.3
+openpyxl==3.1.2
+xlsxwriter==3.1.9
+
+# 網頁爬蟲和API
+requests==2.31.0
+httpx==0.25.2
+beautifulsoup4==4.12.2
+lxml==4.9.3
+
+# 數據庫
+sqlalchemy==2.0.23
+alembic==1.12.1
+asyncpg==0.29.0
+psycopg2-binary==2.9.9
+
+# 緩存和會話
+redis==5.0.1
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+
+# 配置和環境
+python-dotenv==1.0.0
+pydantic==2.5.0
+pydantic-settings==2.1.0
+
+# 日誌和監控
+loguru==0.7.2
+prometheus-client==0.19.0
+
+# 測試
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-cov==4.1.0
+httpx==0.25.2
+
+# 部署和容器
+gunicorn==21.2.0

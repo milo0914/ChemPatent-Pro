@@ -1,0 +1,409 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChemPatent Pro - 化學專利分析系統</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- 導航欄 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <i class="fas fa-flask me-2"></i>ChemPatent Pro
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">首頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#analysis">分析工具</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#results">分析結果</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">關於</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主內容區域 -->
+    <main class="mt-5 pt-4">
+        <!-- 首頁部分 -->
+        <section id="home" class="hero-section py-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h1 class="display-4 fw-bold mb-4">
+                            <i class="fas fa-atom text-primary me-3"></i>
+                            化學專利智能分析
+                        </h1>
+                        <p class="lead mb-4">
+                            專業的化學專利文檔解析、結構識別、權利要求分析和分子性質計算平台
+                        </p>
+                        <div class="d-flex gap-3">
+                            <button class="btn btn-primary btn-lg" onclick="scrollToAnalysis()">
+                                <i class="fas fa-play me-2"></i>開始分析
+                            </button>
+                            <a href="/docs" class="btn btn-outline-primary btn-lg" target="_blank">
+                                <i class="fas fa-book me-2"></i>API文檔
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <i class="fas fa-file-pdf fa-2x text-danger mb-3"></i>
+                                <h5>PDF解析</h5>
+                                <p>支持中英日多語言</p>
+                            </div>
+                            <div class="feature-card">
+                                <i class="fas fa-search fa-2x text-success mb-3"></i>
+                                <h5>結構識別</h5>
+                                <p>自動識別化學結構</p>
+                            </div>
+                            <div class="feature-card">
+                                <i class="fas fa-balance-scale fa-2x text-warning mb-3"></i>
+                                <h5>權利要求</h5>
+                                <p>深度分析專利權利要求</p>
+                            </div>
+                            <div class="feature-card">
+                                <i class="fas fa-chart-line fa-2x text-info mb-3"></i>
+                                <h5>性質計算</h5>
+                                <p>分子描述符計算與可視化</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 分析工具部分 -->
+        <section id="analysis" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-5">
+                    <i class="fas fa-tools me-2"></i>分析工具
+                </h2>
+
+                <!-- 工具選擇標籤 -->
+                <ul class="nav nav-pills nav-fill mb-4" id="analysisTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="comprehensive-tab" data-bs-toggle="pill" 
+                                data-bs-target="#comprehensive" type="button">
+                            <i class="fas fa-magic me-2"></i>綜合分析
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pdf-tab" data-bs-toggle="pill" 
+                                data-bs-target="#pdf" type="button">
+                            <i class="fas fa-file-pdf me-2"></i>PDF解析
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="chemistry-tab" data-bs-toggle="pill" 
+                                data-bs-target="#chemistry" type="button">
+                            <i class="fas fa-atom me-2"></i>化學分析
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="patent-tab" data-bs-toggle="pill" 
+                                data-bs-target="#patent" type="button">
+                            <i class="fas fa-balance-scale me-2"></i>專利分析
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="molecular-tab" data-bs-toggle="pill" 
+                                data-bs-target="#molecular" type="button">
+                            <i class="fas fa-chart-bar me-2"></i>分子性質
+                        </button>
+                    </li>
+                </ul>
+
+                <!-- 工具內容區域 -->
+                <div class="tab-content" id="analysisTabContent">
+                    <!-- 綜合分析 -->
+                    <div class="tab-pane fade show active" id="comprehensive" role="tabpanel">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0"><i class="fas fa-magic me-2"></i>綜合分析</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="comprehensiveForm" enctype="multipart/form-data">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="mb-3">
+                                                <label for="comprehensiveFile" class="form-label">上傳PDF文件</label>
+                                                <input type="file" class="form-control" id="comprehensiveFile" 
+                                                       accept=".pdf" required>
+                                                <div class="form-text">支持最大50MB的PDF文件</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="comprehensiveLanguage" class="form-label">語言</label>
+                                                <select class="form-select" id="comprehensiveLanguage">
+                                                    <option value="auto">自動檢測</option>
+                                                    <option value="zh">中文</option>
+                                                    <option value="en">英文</option>
+                                                    <option value="ja">日文</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" 
+                                                       id="includeMolecular" checked>
+                                                <label class="form-check-label" for="includeMolecular">
+                                                    包含化學結構分析
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" 
+                                                       id="includePatent" checked>
+                                                <label class="form-check-label" for="includePatent">
+                                                    包含專利權利要求分析
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <button type="submit" class="btn btn-primary btn-lg">
+                                            <i class="fas fa-play me-2"></i>開始綜合分析
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PDF解析 -->
+                    <div class="tab-pane fade" id="pdf" role="tabpanel">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0"><i class="fas fa-file-pdf me-2"></i>PDF文檔解析</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="pdfForm" enctype="multipart/form-data">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="mb-3">
+                                                <label for="pdfFile" class="form-label">選擇PDF文件</label>
+                                                <input type="file" class="form-control" id="pdfFile" 
+                                                       accept=".pdf" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="pdfLanguage" class="form-label">語言</label>
+                                                <select class="form-select" id="pdfLanguage">
+                                                    <option value="auto">自動檢測</option>
+                                                    <option value="zh">中文</option>
+                                                    <option value="en">英文</option>
+                                                    <option value="ja">日文</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-upload me-2"></i>解析PDF
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 化學結構分析 -->
+                    <div class="tab-pane fade" id="chemistry" role="tabpanel">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0"><i class="fas fa-atom me-2"></i>化學結構分析</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="chemistryForm" enctype="multipart/form-data">
+                                    <div class="mb-3">
+                                        <label for="chemistryText" class="form-label">化學文本</label>
+                                        <textarea class="form-control" id="chemistryText" rows="4" 
+                                                placeholder="輸入包含化學信息的文本..."></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="chemistryImage" class="form-label">或上傳化學結構圖</label>
+                                        <input type="file" class="form-control" id="chemistryImage" 
+                                               accept=".png,.jpg,.jpeg">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-search me-2"></i>分析化學結構
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 專利權利要求分析 -->
+                    <div class="tab-pane fade" id="patent" role="tabpanel">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0"><i class="fas fa-balance-scale me-2"></i>專利權利要求分析</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="patentForm">
+                                    <div class="mb-3">
+                                        <label for="patentText" class="form-label">專利文本</label>
+                                        <textarea class="form-control" id="patentText" rows="6" 
+                                                placeholder="貼入專利權利要求文本..." required></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="patentLanguage" class="form-label">語言</label>
+                                        <select class="form-select" id="patentLanguage">
+                                            <option value="auto">自動檢測</option>
+                                            <option value="zh">中文</option>
+                                            <option value="en">英文</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-gavel me-2"></i>分析權利要求
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 分子性質計算 -->
+                    <div class="tab-pane fade" id="molecular" role="tabpanel">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0"><i class="fas fa-chart-bar me-2"></i>分子性質計算</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="molecularForm">
+                                    <div class="mb-3">
+                                        <label for="smilesInput" class="form-label">SMILES字符串</label>
+                                        <textarea class="form-control" id="smilesInput" rows="4" 
+                                                placeholder="輸入SMILES字符串，每行一個..." required></textarea>
+                                        <div class="form-text">
+                                            示例: CCO (乙醇), c1ccccc1 (苯), CC(=O)O (醋酸)
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-calculator me-2"></i>計算分子性質
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 結果顯示部分 -->
+        <section id="results" class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-5">
+                    <i class="fas fa-chart-line me-2"></i>分析結果
+                </h2>
+
+                <!-- 加載指示器 -->
+                <div id="loadingIndicator" class="text-center mb-4" style="display: none;">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">分析中...</span>
+                    </div>
+                    <p class="mt-3">正在分析，請稍候...</p>
+                </div>
+
+                <!-- 結果容器 -->
+                <div id="resultsContainer">
+                    <div class="text-center text-muted">
+                        <i class="fas fa-chart-area fa-3x mb-3"></i>
+                        <p>分析結果將在此處顯示</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 關於部分 -->
+        <section id="about" class="py-5 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto text-center">
+                        <h2 class="mb-4">
+                            <i class="fas fa-info-circle me-2"></i>關於ChemPatent Pro
+                        </h2>
+                        <p class="lead mb-4">
+                            ChemPatent Pro是一個專業的化學專利分析平台，集成了先進的文檔處理、
+                            化學信息學和機器學習技術，為化學專利分析提供全面的解決方案。
+                        </p>
+                        <div class="row mt-5">
+                            <div class="col-md-3 mb-4">
+                                <div class="text-primary mb-3">
+                                    <i class="fas fa-language fa-2x"></i>
+                                </div>
+                                <h5>多語言支持</h5>
+                                <p>支持中文、英文、日文專利文檔</p>
+                            </div>
+                            <div class="col-md-3 mb-4">
+                                <div class="text-success mb-3">
+                                    <i class="fas fa-robot fa-2x"></i>
+                                </div>
+                                <h5>智能識別</h5>
+                                <p>AI驅動的化學結構自動識別</p>
+                            </div>
+                            <div class="col-md-3 mb-4">
+                                <div class="text-warning mb-3">
+                                    <i class="fas fa-microscope fa-2x"></i>
+                                </div>
+                                <h5>深度分析</h5>
+                                <p>專利權利要求結構深度解析</p>
+                            </div>
+                            <div class="col-md-3 mb-4">
+                                <div class="text-info mb-3">
+                                    <i class="fas fa-chart-pie fa-2x"></i>
+                                </div>
+                                <h5>可視化</h5>
+                                <p>豐富的圖表和可視化展示</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 頁腳 -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-flask me-2"></i>ChemPatent Pro</h5>
+                    <p>化學專利智能分析系統</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>&copy; 2024 ChemPatent Pro. All rights reserved.</p>
+                    <div>
+                        <a href="/docs" class="text-white me-3">API文檔</a>
+                        <a href="/redoc" class="text-white">ReDoc</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
